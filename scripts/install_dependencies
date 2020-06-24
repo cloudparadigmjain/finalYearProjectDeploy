@@ -16,3 +16,4 @@ npm install passport
 npm install passport-local-mongoose
 npm install express-timestamp
 npm install aws-sdk
+npm install pubnub
