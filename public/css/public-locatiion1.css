@@ -1,0 +1,65 @@
+#drivername{
+    position: relative;
+    top: 100px;
+}
+#button{
+    width: 200px;
+    padding: 15px 0;
+    text-align: center;
+    margin: 0 40px;
+    border-radius: 25px;
+    font-weight: bold;
+    border: 2px solid #32be8f;
+    background-image: linear-gradient(to right, #32be8f, #38d39f, #32be8f);
+    color: rgb(16, 112, 53);
+    cursor: pointer;
+    transition: background 0.5s;
+    position: relative;
+    left: 620px;
+    top: 50px;
+}
+
+#button:hover{
+    background: transparent;
+    border: 2px solid rgb(12, 58, 52);
+}
+
+#nav-bar
+{
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+.navbar-brand img
+{
+    height: 40px;
+    padding-left: 30px;
+}
+.navbar-nav li
+{
+    padding: 0 10px;
+}
+.navbar-nav li a
+{
+    float: right;
+    text-align: left;
+}
+#nav-bar ul li a:hover
+{
+    color: #007bff!important;
+}
+.navbar
+{
+    background: rgb(32, 27, 78);
+}
+}
+.navbar-toggler
+{
+    border: none!important;
+}
+.nav-link
+{
+    color: #555!important;
+    font-weight: 600;
+    font-size: 16px;
+}

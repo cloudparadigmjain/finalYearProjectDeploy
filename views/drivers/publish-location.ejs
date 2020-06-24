@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <title>Google Maps Example</title>
+    <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.27.6.js"></script>
+     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" /> -->
+    <link rel="stylesheet" href="../../css/public-locatiion1.css">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">  
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <body style="background-image: -webkit-linear-gradient(left, #32be8f, #fff)"></body>
+  </head>
+<body>
+  <section id="nav-bar">
+    <nav class="navbar navbar-expand-lg navbar-light">
+     <a class="navbar-brand" href="#"><img src="../../img/logo2.png"></a>
+     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+       <span class="navbar-toggler-icon"></span>
+     </button>
+     
+   </nav>   
+   </section> 
+
+
+  <div>
+    <!-- <h1 style="text-align:center;">Driver you are in</h1> -->
+    <h1 style="text-align:center;" id="driverName">Driver "<%= driverName %>" you are in!!</h1>
+  </div>
+  <a href="/logout"><button id="button">Logout </button></a>
+    <script id="name">
+
+var a = document.getElementById("driverName");
+    var b = a.innerText;
+    console.log(b);
+
+    var pnChannel = b;
+
+        function getLocation() {
+            if (navigator.geolocation) {
+            navigator.geolocation.watchPosition(updatePosition);
+         }
+      
+        return null;
+    };
+
+    function updatePosition(position) {
+      if (position) {
+        window.lat = position.coords.latitude;
+        window.lng = position.coords.longitude;
+      }
+    }
+    
+    setInterval(function(){updatePosition(getLocation());}, 10000);
+
+    function currentLocation() {
+      return {lat:window.lat, lng:window.lng};
+    };
+
+    
+
+    var pubnub = new PubNub({
+      publishKey:   'pub-c-4fe2d8f8-74ed-4d6a-93c4-149e68832d07',
+      subscribeKey: 'sub-c-db832570-885f-11ea-a961-f6bfeb2ef611'
+    });
+
+    setInterval(function() {
+      pubnub.publish({
+          channel: b, 
+          message:currentLocation()
+        });
+    }, 5000);
+    
+    </script>
+
+    <script>
+      //Subscription to common broadcasting channel
+      var pubnub = new PubNub({
+    subscribeKey: "sub-c-db832570-885f-11ea-a961-f6bfeb2ef611",
+    publishKey: "pub-c-4fe2d8f8-74ed-4d6a-93c4-149e68832d07",
+    uuid: "myUniqueUUIDServer",
+    secretKey: "sec-c-YWM1MzAyMGYtODljNi00MGJmLWFhM2MtNWVkNjBiNGI5NzEy"
+});
+
+
+pubnub.addListener({
+    message: function(m) {
+        // handle message
+        console.log(JSON.stringify(m.message));
+        var text;
+var z = confirm("Press this confirm button!");
+if (z == true) {
+    text = "Confirm is pressed!";
+} else {
+    text = "Cancel is pressed!";
+}
+var data = new FormData();
+data.append("User","Hrishi");
+var xhr = new XMLHttpRequest();
+xhr.open("POST", "/recieve", true);
+xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+var obj = {value:"hrishi"}
+xhr.send("value="+text);
+        //confirm(JSON.stringify(m.message))
+    }
+});
+
+pubnub.subscribe({
+    channels: ['orderBroadcast'],
+}, function (err) {
+    console.log(err);
+});
+    </script>
+
+
+
+</body>
+</html>

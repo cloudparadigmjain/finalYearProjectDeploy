@@ -1,0 +1,68 @@
+<%- include('../partials/header') -%>
+<link rel="stylesheet" href="../../css/profile1.css">
+<!-- <link rel="stylesheet" href="../../css/styles.css"> -->
+<!-- <link rel="stylesheet" href="../css/profile1.css"> -->
+
+
+
+
+
+<!-- <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="style.css">
+</head> -->
+
+
+ <div onload="slider()">
+    <div class="banner">
+        <div class="slider">
+            <img src="../img/delivery123.jpg" id="slideImg">
+        </div>
+        <div class="overlay">
+            <div class="navbar">
+
+
+            </div>
+
+            <div class="content">
+                <!-- <h1>Welcome back </h1> -->
+                <h4>Welcome, <%= name %> </h4>
+                <h3>Need groceries, food or pet supplies delivered? Get it Dun!</h3>
+
+                <div>
+                  <a  href="<%= name %>/placeorder"> <button id="button">Place Order</button> </a>
+                  <a href="<%= name %>/orderhistory"> <button id="button">Order History</button></a>
+                    <!-- <button type="button" class="btn-2">Logout</button> -->
+                    <a href="/logout"><button id="button">Logout </button></a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- <script>
+     var slideImg = document.getElementById("slideImg");
+
+     var images = new Array(
+            "../img/img1.jpg",
+            "../img/img2.jpg",
+            "../img/img3.jpg",
+            "../img/img4.jpg"
+        );
+
+    var len = images.length;
+    var i = 0;
+
+    function slider(){
+        if(i > len-1){
+            i = 0;
+        }
+        slideImg.src = images[i];
+        i++;
+        setTimeout('slider()',3000);
+    }
+
+    </script> -->
+
+<%- include('../partials/footer') -%>

@@ -1,0 +1,93 @@
+
+<%- include('partials/header') %>
+
+
+
+			<title>Business Website</title>
+			<link rel="stylesheet" href="../../css/styles.css">
+			<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+			<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+			<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+			<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+<!------ Include the above in your HEAD tag ---------->
+
+
+
+
+		<style>
+			body{
+				margin: 0;
+			}
+			.fwh-slide{
+				height: 100%;
+				width: 100%;
+				background: -webkit-linear-gradient(left, #32be8f, #fff);
+			}
+			.fwh-slide1{
+				height: 50%;
+				background:#fff;
+			}
+			.register123{
+				overflow-x: hidden;
+			}
+
+
+		</style>
+
+
+
+
+
+
+		<div class="register123">
+
+<section class="fwh-slide">
+			  <!-- <img class="wave" src="img/wave.png"> -->
+					  <div class="container">
+						  <div class="img">
+							  <img src="img/delivery boy.png">
+						  </div>
+
+						  <div class="login-content">
+							  <!-- Makes POST request to /login route -->
+
+							  <form action="/login" class="clearfix" method="POST">
+								  <img src="img/avatar.svg">
+							  <h2 class="title">Welcome</h2>
+								  <div class="form-group">
+									  <div class="input-div one">
+										  <div class="i">
+											  <i class="fas fa-user"></i>
+										  </div>
+										  <div class="div">
+									  <!-- <label for="email">Email</label> -->
+									  <input type="username" class="form-control" name="username" placeholder="Username">
+								  </div>
+							  </div>
+								  <div class="form-group">
+									  <div class="input-div pass">
+										  <div class="i">
+											  <i class="fas fa-lock"></i>
+										  </div>
+										  <div class="div">
+
+									  <input type="password" class="form-control" name="password" placeholder="Password">
+								  </div>
+							  </div>
+								  <button type="submit" class="btn btn-dark">Login</button>
+							  </form>
+
+						  </div>
+					  </div>
+		</div>
+		</section>
+	</div>
+
+	<%- include('partials/footer') %>
+
+
+
+
+	

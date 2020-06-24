@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscriber Map</title>
+    <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.27.6.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
+</head>
+<body>
+    <div class="container">
+        <h1>Admin Panel Map</h1>
+        <a href="/logout">logout</a>
+        <div id="map-canvas" style="width:1200px;height:900px"></div>
+      </div>
+      
+
+      <script>
+
+      var channelcount;
+      var counter=0;
+
+var pubnub = new PubNub({
+      publishKey:   'pub-c-4fe2d8f8-74ed-4d6a-93c4-149e68832d07',
+      subscribeKey: 'sub-c-db832570-885f-11ea-a961-f6bfeb2ef611'
+    });
+
+          window.lat = 12.9716;
+          window.lng = 77.5946;
+
+          var map;
+      
+    var initialize = function() {
+     
+      map  = new google.maps.Map(document.getElementById('map-canvas'), {center:{lat:lat,lng:lng},zoom:10});
+      // mark = new google.maps.Marker({position:{lat:lat, lng:lng}, map:map});
+    };
+    window.initialize = initialize;
+
+
+      function markerCreator(payload)
+      {
+      
+      this.channelname=payload.channel;
+      this.lat = payload.message.lat;
+      this.lng = payload.message.lng;
+      this.mark;
+    //  this.createmark=function(){
+       
+    //     this.mark = new google.maps.Marker({position:{lat:this.lat, lng:this.lng}, map:map});
+    //    }
+      
+    //     this.setmark=function(){
+    //     this.mark.setPosition({lat:this.lat, lng:this.lng, alt:0});
+
+    //     }
+      } 
+      markerCreator.prototype={
+        createmark:function(){
+          mark=new google.maps.Marker({position:{lat:this.lat, lng:this.lng}, map:map})
+        },
+        setmark:function(){
+          mark.setPosition({lat:this.lat, lng:this.lng, alt:0});
+        }       
+      }
+
+      pubnub.channelGroups.listChannels(
+    {
+        channelGroup: "myChannelGroup"
+    }, 
+    function (status, response) {
+    if (status.error) {
+      console.log("operation failed w/ error:", status);
+      return;
+    }
+          console.log("channel names",response.channels);
+    channelarr=response.channels;
+   channelcount=channelarr.length;
+  });
+      channelcheckarr=[];
+
+    pubnub.subscribe({
+    channelGroups: ['myChannelGroup'],
+}, function (err) {
+    console.log(err);
+});
+
+pubnub.addListener({
+    message: function(m){
+      // assuming an intialized PubNub instance already exists
+
+    console.log("morning",channelarr);
+    var count=true;
+   while(count){
+    for(i=0;i<=channelcheckarr.length;i++){
+        console.log("Inside For",i);
+        console.log("channel name:",m.channel);
+        console.log("channelacheckarr value",channelcheckarr[i]);
+        
+      if(m.channel==channelcheckarr[i]){
+        for(i=0;i<channelarr.length;i++){
+          if(m.channel===channelarr[i].channelname){
+            console.log("Inside 2For",i);
+            console.log(typeof(channelarr[i].channelname),"name",channelarr[i].lat,channelarr[i].lng,"i",i);
+            channelarr[i].lat=m.message.lat;
+            channelarr[i].lng=m.message.lng;
+            
+            channelarr[i].setmark();
+            count=false;
+          }
+        }
+          
+      
+        }    
+      }    
+    
+   if (count==true)
+   {
+     channelcheckarr.push(m.channel);
+        console.log(channelcheckarr ,"Hi", count);
+        
+        for(i=0;i<channelarr.length;i++){
+          console.log("jatin",channelarr);
+          
+          console.log("Thanos");
+          console.log(m.channel, "turn",i);
+          console.log(channelarr[i],"CGList");
+          
+          
+
+          if(m.channel==channelarr[i]) {
+            console.log("Inside if");
+            var length=channelarr.length;
+            console.log("length",length);
+            channelarr[length]=new markerCreator(m);
+           
+            console.log("hrishi",channelarr);
+            channelarr[length].createmark();
+            console.log("create mark hogaya")
+            channelarr[length].setmark(); 
+            console.log("srtmark hogaya");
+            count=false;
+          }
+    
+          }
+      }
+  }
+                 
+    }
+    }
+);
+
+    </script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDYRICW4Bm4donS0-9LCp_h0nlsyWvEuGY&callback=initialize"></script>
+</body>
+</html>

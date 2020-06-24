@@ -1,0 +1,18 @@
+#!/bin/bash
+cd /home/ec2-user/node-website
+curl -sL https://rpm.nodesource.com/setup_12.x | bash -
+yum install -y nodejs
+npm install forever -g
+npm install express
+npm install body-parser
+npm install ejs
+npm install mongoose
+npm install lodash
+npm install https
+npm install serve-static
+npm install path
+npm install express-session
+npm install passport
+npm install passport-local-mongoose
+npm install express-timestamp
+npm install aws-sdk

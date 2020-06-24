@@ -1,0 +1,123 @@
+body{
+    /* background: -webkit-linear-gradient(left, #3931af, #00c6ff); */
+/* background: -webkit-linear-gradient(left, #32be8f, #fff); */
+    /* background-image: linear-gradient(to right, #32be8f, #38d39f, #32be8f); */
+}
+
+/*----------Navigation-------*/
+#nav-bar
+{
+   position: sticky;
+   top: 0;
+   z-index: 10;
+   background: #00203fff;
+}
+.navbar-brand img
+{
+   height: 50px;
+   padding-left: 30px;
+}
+.navbar-nav li
+{
+   padding: 0 10px;
+}
+.navbar-nav li a
+{
+   float: right;
+   text-align: left;
+}
+#nav-bar ul li a:hover
+{
+   color: #007bff!important;
+}
+
+.navbar-toggler
+{
+   border: none!important;
+}
+.nav-link
+{
+   color: #555!important;
+   font-weight: 600;
+   font-size: 16px;
+}
+
+
+
+
+
+h1{
+  text-align: center;
+}
+
+  #map {
+    height: 500px;
+    position: relative;
+    bottom: 220px;
+  }
+
+.col{
+  width: 500px;
+  height: 300px;
+  margin: 30px 30px;
+  border-radius: 25px;
+  position: relative;
+  bottom: 50px;
+
+}
+
+.row .col1 .h1{
+  text-align: justify;
+}
+
+
+.flex-parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.form-control{
+    width: 400px;
+
+    height: 50px ;
+    padding: 15px ;
+    text-align: center;
+    justify-content: center;
+    margin: 0 40px;
+    border-radius: 25px;
+    font-weight: bold;
+    border: 2px solid #32be8f;
+    background-image: linear-gradient(to right, #32be8f, #38d39f, #32be8f);
+    color: white;
+    /* cursor: pointer; */
+    transition: background 0.5s;
+    position: relative;
+    left: 100px;
+}
+.form-control:hover{
+    background: transparent;
+    border: 2px solid red;
+}
+
+#button{
+    width: 200px;
+    padding: 15px 0;
+    text-align: center;
+    margin: 0 40px;
+    border-radius: 25px;
+    font-weight: bold;
+    border: 2px solid #32be8f;
+    background-image: linear-gradient(to right, #32be8f, #38d39f, #32be8f);
+    color: white;
+    cursor: pointer;
+    transition: background 0.5s;
+    position: relative;
+    right: 390px;
+    top: 50px;
+}
+#button:hover{
+    background: #32be8f;
+    border: 2px solid red;
+}
